@@ -1,154 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+
+/* styles.categoria-produto.css */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f0f0f0;
+    font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-}
-
-.container {
-    width: 70%;
-    margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    justify-content: left;
-}
-
-.container-gameList{
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: row !important;
-    width: 70%;
-}
-
-#gameList{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
-    margin: 1rem;
-    padding: 1rem;
-    justify-content: center;
-}
-
-.input-container {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-.input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.card {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    margin-top: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgb(255, 136, 225);
-    margin: 1rem;
-}
-
-.card img {
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    width: 200px;
-    height: 200px;
-}
-
-.card-content {
-    text-align: left;
-}
-
-#vazio-lista {
-    color: green
+    background-color: #f4f4f4;
 }
 
 .error{
     color: red;
-    text-align: center;
+    margin-top: 5px;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 0;
+    display: block;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
-
-.success{
+.correct{
     color: green;
-    font-weight: bold;
+    margin-top: 5px;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 0;
+    display: block;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#container-inputs {
+    display: flex;
+    flex-direction: column;
+    margin: .5rem 0;
+    gap: 10px;
+    margin-left: 2rem;
+}
+
+h2 {
     text-align: center;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+}
+
+#container-inputs input {
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
 }
 
 
 
+button {
+    background-color: blue;
+    color: #ffffff;
+    padding: 10px;
+    width: 7rem;
+    border: none;
+    border-radius: 5px;
+}
 
+#principal-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 65%;
+    margin: 0 20%;
+    height: 70%;
+    top: 0;
+    margin-top: 0;
+    margin-bottom: 5%;
+}
+#sub-container {
+    display: flex;
+    background-color: #ffffff;
+    width: 65%;
+    margin: 0 20%;
+    height: 70%;
+    top: 0;
+    margin-top: 0;
+    margin-bottom: 1%;
+}
 
+#conteiner-list{
+    background-color: #ffffff;
+    margin: .5rem 0;
+    gap: 10px;
+    max-width: 100px;
+    display: flex;
+    margin-top: 3%;
+    margin-left: 2%;
+    margin-bottom: 3%;
+}
 
+#conteiner-list img{
+    width: 200px;
+    height: 200px;
+    padding: 35px;
+}
 
+.gameDetail {
+    border: 5px black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 0.625rem rgba(0, 0, 0);
+    flex-direction: column;
+    padding: 20px;
+    max-width: 230px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.gameDetail p{
+    max-width: 200px;
+}
 
 
 

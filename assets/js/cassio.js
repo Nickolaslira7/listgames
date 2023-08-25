@@ -1,115 +1,139 @@
-class Game {
-    constructor(titulo, preco, descricao, plataforma, imagem) {
-        this.titulo = titulo;
-        this.preco = preco;
-        this.descricao = descricao;
-        this.plataforma = plataforma;
-        this.imagem = imagem;
-    }
-}
+function isAnyInputEmpty() {
+    let title = document.getElementById("input-title").value;
+    let price = document.getElementById("input-price").value;
+    let descrition = document.getElementById("input-descrition").value;
+    let platform = document.getElementById("input-platform").value;
+    let LinkImg = document.getElementById("input-LinkImg").value;
 
-// Classe GamesList
-class GamesList {
-    constructor() {
-        this.games = [];
-    }
-
-    adicionarJogo(titulo, preco, descricao, plataforma, imagem) {
-        if (isAnyInputEmpty()) {
-            sendMSG("Preencha todos os campos!", "error"); 
-        }else if(!isURLValida(imagem)){
-            sendMSG("URL da imagem inválida!", "error");
-        }
-        else{
-            const jogo = new Game(titulo, preco, descricao, plataforma, imagem);
-            this.games.push(jogo);
-            sendMSG("Jogo adicionado com sucesso!", "success");
-            clearInputs();
-        }
-
-
-    }
-}
-
-// Função para exibir jogos
-function exibirJogos() {
-    const gameList = document.getElementById("gameList");
-    gameList.innerHTML = "";
-
-    gamesList.games.forEach(jogo => {
-        const cardDiv = `
-            <div class="card">
-                <img src="${jogo.imagem}" alt="${jogo.titulo}">
-                <h2>${jogo.titulo}</h2>
-                <p>Preço: R$${jogo.preco}</p>
-                <p>Descrição: ${jogo.descricao}</p>
-                <p>Plataforma: ${jogo.plataforma}</p>
-            </div>
-        `;
-
-        gameList.innerHTML += cardDiv;
-    });
-}
-
-// Instância da classe GamesList
-const gamesList = new GamesList();
-
-// Função para adicionar um jogo
-function adicionarJogo() {
-    const titulo = document.getElementById("titulo").value;
-    const preco = document.getElementById("preco").value;
-    const descricao = document.getElementById("descricao").value;
-    const plataforma = document.getElementById("plataforma").value;
-    const imagem = document.getElementById("imagem").value;
-
-    gamesList.adicionarJogo(titulo, preco, descricao, plataforma, imagem);
-
-    exibirJogos();
-}
-
-function isURLValida(url) {
-    if(url.match(/\.(jpeg|jpg|gif|png)$/) != null){
-        return true;
+    if (title == "" || price == "" || descrition == "" || platform == "" || LinkImg == "") {
+        sendMsg("Preencha todos os campos!", "error")
+        return true
     } else {
-        return false;
+        sendMsg("Cadastrado com sucesso", "correct")
+        return false
     }
 }
 
-function clearInputs(){
-    // Limpa os campos de entrada após adicionar o jogo
-    document.getElementById("titulo").value = "";
-    document.getElementById("preco").value = "";
-    document.getElementById("descricao").value = "";
-    document.getElementById("plataforma").value = "";
-    document.getElementById("imagem").value = "";
+function InputsClund() {
+    document.getElementById("input-title").value = "";
+    document.getElementById("input-price").value = "";
+    document.getElementById("input-descrition").value = "";
+    document.getElementById("input-platform").value = "";
+    document.getElementById("input-LinkImg").value = "";
 }
 
-function sendMSG(msg,type){  
-    // Como type vai ser a class, será ou error ou success
-    const msgDiv = document.getElementById("msg");
-    msgDiv.innerHTML = "";
+function sendMsg(msg, type) {
+    let msgDiv = document.getElementById("text");
+    msgDiv.innerHTML = '';
 
-    const msgP = `
-        <p class="${type}">${msg}</p>
-    `;
+    let msgToScreen = `<p class="${type}"> ${msg} </p>`
 
-    msgDiv.innerHTML += msgP;
-
-    setTimeout(function(){
-        msgDiv.innerHTML = "";
+    msgDiv.innerHTML = msgToScreen;
+    setTimeout(function () {
+        msgDiv.innerHTML = `<p class="${type}"></p>`;
     }, 3000);
+
 }
 
-function isAnyInputEmpty(){
-    const titulo = document.getElementById("titulo").value;
-    const preco = document.getElementById("preco").value;
-    const descricao = document.getElementById("descricao").value;
-    const plataforma = document.getElementById("plataforma").value;
-    const imagem = document.getElementById("imagem").value;
+function registerGame() {
+    ComposeGame();
+    isAnyInputEmpty();
+    if (!isAnyInputEmpty() && isURLValid()) {
+        InputsClund();
+        listHTML();
+        gameTest.ContId();
+    }
 
-    if(titulo == "" || preco == "" || descricao == "" || plataforma == "" || imagem == ""){
+}
+
+class Game {
+    constructor(title, price, descrition, platform, linkImg) {
+        this.title = title;
+        this.price = price;
+        this.descrition = descrition;
+        this.platform = platform;
+        this.linkImg = linkImg;
+        this.id = this.ContId();
+    }
+    ContId() {
+        let id = 1;
+        id++
+        return id
+    }
+
+}
+
+const gameTest = new Game();
+
+function ComposeGame() {
+    let title = document.getElementById("input-title").value;
+    let price = document.getElementById("input-price").value;
+    let descrition = document.getElementById("input-descrition").value;
+    let platform = document.getElementById("input-platform").value;
+    let linkImg = document.getElementById("input-LinkImg").value;
+
+    const game = new Game(title, price, descrition, platform, linkImg, gameTest.ContId());
+    gameLibrary.add(game);
+}
+
+class GameList {
+    constructor() {
+        this.gameListArray = [];
+    }
+    add(parameter) {
+        if (!isAnyInputEmpty() && isURLValid()) {
+            this.gameListArray.push(parameter)
+        }
+    }
+    remove(id) {
+        const index = this.gameListArray.findIndex(game => game.id === id);
+        if (index !== -1) {
+            this.gameListArray.splice(index, 1);
+        }
+        if (changeColor > 1) {
+            this.gameListArray.splice(index, -1);
+        }
+    }
+}
+
+const gameLibrary = new GameList();
+
+function listHTML() {
+
+    const listHTML = document.getElementById("conteiner-list");
+    listHTML.innerHTML = '';
+    let array = gameLibrary.gameListArray;
+
+    array.forEach(game => {
+        const gameDiv = `<div class="gameDetail" id="div${game.id}">
+        <img src="${game.linkImg}" alt="${game.title}">
+        <p><b>Título:</b> ${game.title}</p> 
+        <p><b>Preço:</b> ${game.price}</p> 
+        <p><b>Descrição:</b> ${game.descrition}</p> 
+        <p><b>Plataforma:</b> ${game.platform}</p>
+        <button onclick="deleteGame(${game.id})">Delete</button>
+        </div>`;
+        console.log(game.linkImg);
+        listHTML.innerHTML += gameDiv;
+    })
+
+
+
+}
+
+function isURLValid() {
+    const url = document.getElementById("input-LinkImg").value;
+
+    if (url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
         return true;
     } else {
+        sendMsg("A url da imagem está errada!", "error")
         return false;
     }
+}
+
+function deleteGame(id) {
+    document.getElementById("div" + id).style.display = "none";
+    gameLibrary.remove(id);
+    
 }
